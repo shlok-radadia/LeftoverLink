@@ -13,7 +13,7 @@ const registerUser = asyncHandler(async (req, res) => {
     // check for user creation
     // return response
     const { name, email, category, password } = req.body;
-    console.log("Email:", email);
+    // console.log("Email:", email);
 
     if(
         [name, email, category, password].some((field) => field?.trim() === "")
@@ -24,7 +24,7 @@ const registerUser = asyncHandler(async (req, res) => {
         );
     }
 
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [{ email }]
     })
 
